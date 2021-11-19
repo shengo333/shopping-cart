@@ -1,9 +1,10 @@
 <template>
   <div id="wrapper">
-    <ShoppingItem v-for="product in products" :product="product"/>
+    <ShoppingItem v-for="(product, index) in products" :product="product" :index="index" @removeProduct="removeProduct"/>
     <input type="text" v-model="newProduct.title">
     <input type="number" v-model="newProduct.price">
     <button @click="addProduct" >Submit</button>
+
 
   </div>
 </template>
@@ -39,10 +40,24 @@ export default {
       }
   },
   methods: {
-    addProduct: function () {
-        this.products.push(this.newProduct)
+    addProduct () {
+      let newProduct = {
+        ...this.newProduct
+        
+        //title: this.newProduct.title,
+        //price: this.newProduct.price
+      }
+      
+      //newProduct.price = this.newProduct.price
+      //newProduct.title = this.newProduct.title
+      this.products.push(newProduct)
       //add product to the object
-      alert("product has been added")
+      //alert("product has been added")
+      this.newProduct.price = null
+      this.newProduct.title = null
+    },
+    removeProduct (index) {
+      this.products.splice(index,1)
     }
   } 
 }

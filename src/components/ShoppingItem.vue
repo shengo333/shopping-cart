@@ -1,6 +1,7 @@
 <template>
     <div class="product" >
       {{product.title}} {{product.price}}
+      <button @click="removeProduct">Remove </button>
     </div>
 </template>
 
@@ -9,7 +10,13 @@ export default {
   name: 'ShoppingItem',
   props: {
     product: Object,
+    index: Number,
   },
+  methods: {
+    removeProduct(){
+      this.$emit("removeProduct", this.index)
+    }
+  }
 
   
 }
