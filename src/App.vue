@@ -1,26 +1,61 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="wrapper">
+    <ShoppingItem v-for="product in products" :product="product"/>
+    <input type="text" v-model="newProduct.title">
+    <input type="number" v-model="newProduct.price">
+    <button @click="addProduct" >Submit</button>
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ShoppingItem from './components/ShoppingItem.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    ShoppingItem
+  },
+  data(){
+    return{
+      newProduct: {
+        price: null,
+        title: null
+        },
+      products:[
+        {
+          title: "jonjoli",
+          price: 2,
+        },
+        {
+          title: "ombalo",
+          price: 4,
+        },
+        {
+          title: "fortokhali",
+          price: 5,
+        },
+      ],
+      }
+  },
+  methods: {
+    addProduct: function () {
+        this.products.push(this.newProduct)
+      //add product to the object
+      alert("product has been added")
+    }
+  } 
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#wrapper{
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
+
 </style>
