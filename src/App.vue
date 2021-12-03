@@ -1,11 +1,9 @@
 <template>
   <div id="wrapper">
-    <ShoppingItem v-for="(product, index) in products" :product="product" :index="index" @removeProduct="removeProduct"/>
+    <ShoppingItem  v-for="(product, index) in products" :product="product" :index="index" @removeProduct="removeProduct"/>
     <input type="text" v-model="newProduct.title">
-    <input type="number" v-model="newProduct.price">
+    <input type="number" v-model="newProduct.price"> 
     <button @click="addProduct" >Submit</button>
-
-
   </div>
 </template>
 
@@ -18,6 +16,7 @@ export default {
     ShoppingItem
   },
   data(){
+    expansive: false;
     return{
       newProduct: {
         price: null,
@@ -60,16 +59,19 @@ export default {
       this.products.splice(index,1)
     }
   } 
+ 
 }
 </script>
 
 <style>
 #wrapper{
   display: flex;
-  gap: 3rem;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  gap: 3rem;
+  flex-wrap: wrap;
+  background-color: rgb(236, 241, 236) ;
 }
 
 

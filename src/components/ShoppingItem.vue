@@ -1,6 +1,6 @@
 <template>
-    <div class="product" >
-      {{product.title}} {{product.price}}
+    <div class="product" :class="product.price > 10 ? 'expensive' : '' ">
+      {{product.title}} ₾{{product.price}}
       <button @click="removeProduct">Remove </button>
     </div>
 </template>
@@ -25,7 +25,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .product {
-  border: 1px solid orangered;
+  border: 2px solid rgb(122, 122, 124);
   padding: 3rem;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+.expensive{
+  background-color: red;
 }
 </style>
